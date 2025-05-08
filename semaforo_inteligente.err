@@ -1,0 +1,4 @@
+Error[18]   C:\Users\alenc\Documents\Project Backups\semaforo_inteligente.c 19 : File can not be opened
+    Not in "C:\PICC\devices\16F874.h"
+    Not in "C:\PICC\drivers\16F874.h"
+    Not in local "C:\Users\alenc\Documents\Project Backups\16F874.h"
