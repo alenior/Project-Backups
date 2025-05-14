@@ -64,37 +64,21 @@ void trata_rb() {
       if (pedestre_chama == 0) {
          pedestre_chama = 1;
          output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
+         delay_ms(100);
          output_high(BUZZER);  // Desativa o buzzer
-         delay_ms(125);
+         delay_ms(250);
          output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
-         output_high(BUZZER);  // Desativa o buzzer
-         delay_ms(125);
-         output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
-         output_high(BUZZER);  // Desativa o buzzer
-         delay_ms(125);
-         output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
+         delay_ms(100);
          output_high(BUZZER);  // Desativa o buzzer
       }
       else {
          pedestre_chama = 0;
          output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
+         delay_ms(100);
          output_high(BUZZER);  // Desativa o buzzer
-         delay_ms(125);
+         delay_ms(250);
          output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
-         output_high(BUZZER);  // Desativa o buzzer
-         delay_ms(125);
-         output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
-         output_high(BUZZER);  // Desativa o buzzer
-         delay_ms(125);
-         output_low(BUZZER);   // Ativa o buzzer puxando para GND
-         delay_ms(125);
+         delay_ms(100);
          output_high(BUZZER);  // Desativa o buzzer
       }
 }
@@ -134,28 +118,22 @@ void pedestre_passando() {
       // Animação conforme tempo
       if (tempo_pedestre >= 7 && tempo_pedestre <= 10) {
          lcd_putc(animacoes[(10 - tempo_pedestre) % 4]);  // >--- até --->
-         output_low(BUZZER); delay_ms(300);
-         output_high(BUZZER); delay_ms(200);
-         output_low(BUZZER); delay_ms(300);
-         output_high(BUZZER); delay_ms(200);
+         output_low(BUZZER); delay_ms(500);
+         output_high(BUZZER); delay_ms(500);
       }
-         
+
       else if (tempo_pedestre >= 3 && tempo_pedestre <= 6) {
          lcd_putc(animacoes[(10 - tempo_pedestre) % 4]);  // >--- até ---> novamente
-         output_low(BUZZER); delay_ms(300);
-         output_high(BUZZER); delay_ms(200);
-         output_low(BUZZER); delay_ms(300);
-         output_high(BUZZER); delay_ms(200);
+         output_low(BUZZER); delay_ms(500);
+         output_high(BUZZER); delay_ms(500);
       }
 
       else if (tempo_pedestre == 2 || tempo_pedestre == 1) {
          lcd_putc(animacoes[4]);  // " !!!!"
          output_low(BUZZER); delay_ms(100);
          output_high(BUZZER); delay_ms(200);
-         output_low(BUZZER); delay_ms(100);
-         output_high(BUZZER); delay_ms(200);
-         output_low(BUZZER); delay_ms(100);
-         output_high(BUZZER); delay_ms(300);
+         output_low(BUZZER); delay_ms(300);
+         output_high(BUZZER); delay_ms(400);
       }
 
       else {
@@ -184,9 +162,9 @@ void main() {
    enable_interrupts(GLOBAL);
 
    while (TRUE) {
-   
+
       pedestre_chama = 0;
-      
+
       // -------- SEMÁFORO A: Verde A + Vermelho B
       output_c(0b01011100); // Verde A (RC2), Vermelho B (RC6), Vermelho Pedestre (RC3)
       verdeA = 1;
@@ -225,14 +203,14 @@ void main() {
       delay_ms(3000);
 
       fluxo_b = 0;
-      
+
       if (pedestre_chama == 1)
          pedestre_passando();
 
       pedestre_chama = 0;
 
       // -------- SEMÁFORO B: Verde B + Vermelho A
-      output_c(0b00111001); // Verde B (RC5), Vermelho A (RC0),Vermelho Pedestre (RC3)
+      output_c(0b00111001); // Verde B (RC5), Vermelho A (RC0), Vermelho Pedestre (RC3)
       verdeB = 1;
       contador_verde_b = 0;
 
@@ -265,7 +243,7 @@ void main() {
       delay_ms(3000);
 
       fluxo_a = 0;
-      
+
       if (pedestre_chama == 1)
          pedestre_passando();
    }
